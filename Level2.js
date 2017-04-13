@@ -11,8 +11,8 @@ var g2mx = 10;
 var g2my = 4;
 var gmx= 10;
 var gmy = 4;
-var ddx = 1025;
-var ddy = 240;
+var ddx = 640;
+var ddy = 569;
 var action = false;
 var ddmvx = 0;
 var ddmyx = 0;
@@ -63,16 +63,16 @@ function map(){
   ctx.lineTo(200,200);
   ctx.lineTo(200,50);
   ctx.lineTo(450,50); //400
-  ctx.lineTo(450,200);
-  ctx.lineTo(500,200); //450
+  ctx.lineTo(450, 450); //200
+  //ctx.lineTo(500,200); //450
   
   //Safe Space on Right
-  ctx.lineTo(500,150); 
-  ctx.lineTo(550, 150);
-  ctx.lineTo(550, 350);
-  ctx.lineTo(500,350);
-  ctx.lineTo(500,300);
-  ctx.lineTo(450,300);
+  //ctx.lineTo(500,150); 
+  //ctx.lineTo(550, 150);
+  //ctx.lineTo(550, 350);
+  //ctx.lineTo(500,350);
+  //ctx.lineTo(500,300);
+  //ctx.lineTo(450,300);
 
   //Chancellor Office on Left
   ctx.moveTo(150,200);
@@ -85,19 +85,43 @@ function map(){
   ctx.moveTo(150,300); //Bottom of main block
   ctx.lineTo(200,300);
   ctx.lineTo(200,450);
-  ctx.lineTo(450,450); //400
-  ctx.lineTo(450,300); //400
+  ctx.lineTo(300, 450);
+  ctx.lineTo(300, 600);
+  ctx.lineTo(310, 600);
+
+  ctx.moveTo(340, 600);
+  ctx.lineTo(350, 600);
+  ctx.lineTo(350, 450);
+  ctx.lineTo(450, 450);
+  //ctx.lineTo(450,450); //400
+  //ctx.lineTo(450,300); //400
 	
   ctx.fillStyle= "white";
   ctx.fillRect(200, 50, 250, 400);//main block
   ctx.fillRect(150,200, 50, 100); //path to chancellor
-  ctx.fillRect(450, 200, 50, 100);//path to safe space
+  ctx.fillRect(300, 450, 50, 100);
+  //ctx.fillRect(450, 200, 50, 100);//path to safe space
+
   ctx.fillStyle = "green";
   ctx.fillRect(75, 150, 75, 200);
-  ctx.fillRect(500, 150, 50, 200);
-  ctx.fillRect(500, 220, 60, 60);
+  ctx.fillRect(300, 450, 50, 150);
+  //ctx.fillRect(500, 150, 50, 200);
+  //ctx.fillRect(500, 220, 60, 60);
 
-  ctx.moveTo(525,280);
+  ctx.moveTo(310, 600);
+  ctx.lineTo(315, 650);
+  ctx.lineTo(345, 650);
+  ctx.lineTo(340, 600);
+  ctx.moveTo(341, 610);
+  ctx.lineTo(311, 610);
+  ctx.moveTo(342, 620);
+  ctx.lineTo(312, 620);
+  ctx.moveTo(343, 630);
+  ctx.lineTo(313, 630);
+  ctx.moveTo(344, 640);
+  ctx.lineTo(314, 640);
+
+  /*ctx.moveTo(525,280);
   ctx.lineTo(530,280); //stairs setup
   ctx.lineTo(530,220);
   ctx.moveTo(535,220);
@@ -114,7 +138,7 @@ function map(){
   ctx.lineTo(560, 280);
   ctx.lineTo(525,280);
   ctx.moveTo(560, 220); //525
-  ctx.lineTo(525,220);
+  ctx.lineTo(525,220);*/
 
 
 
@@ -149,10 +173,10 @@ function draw(){
 	dareD();
 	context.font="15px Times New Roman";
 	context.strokeText("Chancellor's Office", 169, 230);
-	if (action && ddx == 1025){
+	if (action && ddy == 569){
 		//play a sound when dareD actually starts moving
 		if(gy < 450 || g2x > 415){
-			ddmvx = -10;
+			ddmyx = -10;
 			//ddmyx = -10;
 		}else{
 			clearInterval(intrvlID);
@@ -167,18 +191,22 @@ function draw(){
 		gmx = gmx * -1;
 	}
 
-	if (g2x + g2mx > 900 || g2x + g2mx < 410){
+	if (g2x + g2mx > 870 || g2x + g2mx < 410){
 		g2mx = g2mx * -1;
 	}
-	if(ddx+ddmvx <= 200) {
+
+	if(ddy + ddmyx <235){
+		ddmyx = 0;
+	}
+	else if (action && ddy == 235){
+		ddmvx= -10;
+	}
+	if(ddx+ddmvx <= 160) {
 		//clearInterval(intrvlID);
 		ddmvx = 0;
 		//steps.stop();
 	}
 
-	if(ddy + ddmyx <100){
-		ddmyx = 0;
-	}
 	pan += pI;
 	steps.stereo(-1.0,id);
 	ddx += ddmvx;
