@@ -183,25 +183,23 @@ function draw(){
 			alert('Game Over. The guard spotted you');
 			steps.stop();
 		}	
-	} else if (action && ddx < 150){
+	} else if (action && ddy < 569){
 		//play a sound when dareD actually starts moving
 		ddmyx = -20;
 	}
-	if( gx + gmx < 410 || gx + gmx > 870){
+	if( gx + gmx < 635|| gx + gmx > 870){
 		gmx = gmx * -1;
 	}
 
-	if (g2x + g2mx > 870 || g2x + g2mx < 410){
+	if (g2x + g2mx > 645 || g2x + g2mx < 410){
 		g2mx = g2mx * -1;
 	}
 
-	if(ddy + ddmyx <235){
-		ddmyx = 0;
-	}
-	else if (action && ddy == 235){
-		ddmvx= -10;
-	}
-	if(ddx+ddmvx <= 160) {
+	if(ddy + ddmyx <345){
+		ddmyx = 0; //235
+	} 
+	
+	if(ddy+ddmyx <= 235) {
 		//clearInterval(intrvlID);
 		ddmvx = 0;
 		//steps.stop();
